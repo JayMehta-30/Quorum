@@ -5,11 +5,11 @@ export const BackgroundMarquee = () => {
   // Use all movies for the background to reduce repetition
   const bgMovies = [...MOVIES].sort((a, b) => a.id.localeCompare(b.id));
 
-  // Create 8 columns with different starting offsets and shuffle patterns
+  // Generate columns deterministically so SSR matches Client perfectly
   const columns = Array.from({ length: 8 }).map((_, i) => {
-    // Each column gets a different slice and order
-    const shuffled = [...bgMovies].sort(() => 0.5 - Math.random());
-    return shuffled;
+    // Offset each column by a unique amount based on its index
+    const offset = (i * 13) % bgMovies.length;
+    return [...bgMovies.slice(offset), ...bgMovies.slice(0, offset)];
   });
 
   return (
