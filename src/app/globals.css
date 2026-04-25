@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0F0F12;
+  --color-card: #1A1A1F;
+  --color-accent: #FF4D6D;
+  --color-secondary: #4ECDC4;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #A0A0A0;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-text-primary overflow-hidden select-none font-sans;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-card/70 backdrop-blur-xl border border-white/5 shadow-2xl;
+  }
+  .glass-glow {
+    @apply bg-card/70 backdrop-blur-xl border border-white/10 shadow-[0_0_30px_rgba(255,77,109,0.3)];
+  }
+}
