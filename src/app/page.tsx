@@ -18,11 +18,11 @@ export default function Home() {
     return selectedMovies
       .map((movie) => {
         let score = 0;
-        const sentiment: Record<string, string> = {};
+        const sentiment: Record<number, string> = {};
         
-        players.forEach((p) => {
-          const vote = votes[p]?.[movie.id];
-          sentiment[p] = vote || 'no';
+        players.forEach((p, i) => {
+          const vote = votes[i]?.[movie.id];
+          sentiment[i] = vote || 'no';
           if (vote === 'love') score += 3;
           else if (vote === 'yes') score += 1;
         });
@@ -63,7 +63,7 @@ export default function Home() {
         )}
 
         {(phase === "REVEAL" || phase === "LEADERBOARD") && (
-          <ResultsScreen results={results} totalVoters={players.length} onRestart={resetGame} />
+          <ResultsScreen results={results} totalVoters={players.length} players={players} onRestart={resetGame} />
         )}
       </div>
     </main>

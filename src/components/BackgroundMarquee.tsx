@@ -2,11 +2,14 @@
 import { MOVIES } from "@/data/movies";
 
 export const BackgroundMarquee = () => {
-  const bgMovies = MOVIES.slice(0, 20);
-  // Create 8 columns of movies, slightly offset so they don't look identical
+  // Use all movies for the background to reduce repetition
+  const bgMovies = [...MOVIES].sort((a, b) => a.id.localeCompare(b.id));
+
+  // Create 8 columns with different starting offsets and shuffle patterns
   const columns = Array.from({ length: 8 }).map((_, i) => {
-    const offset = i % bgMovies.length;
-    return [...bgMovies.slice(offset), ...bgMovies.slice(0, offset)];
+    // Each column gets a different slice and order
+    const shuffled = [...bgMovies].sort(() => 0.5 - Math.random());
+    return shuffled;
   });
 
   return (
@@ -24,7 +27,7 @@ export const BackgroundMarquee = () => {
                 // Slightly vary the animation duration per column for a more organic feel
                 style={{ animationDuration: `${30 + (i % 4) * 8}s` }}
               >
-                {[...colMovies, ...colMovies, ...colMovies].map((m, idx) => (
+                {[...colMovies.slice(0, 15), ...colMovies.slice(0, 15)].map((m, idx) => (
                   <img
                     key={`${i}-${m.id}-${idx}`}
                     src={m.poster}
@@ -32,6 +35,7 @@ export const BackgroundMarquee = () => {
                     className="w-full aspect-[2/3] object-cover rounded-xl shadow-card-cinema"
                     loading="lazy"
                     aria-hidden
+                    onError={(e) => (e.currentTarget.style.display = 'none')}
                   />
                 ))}
               </div>

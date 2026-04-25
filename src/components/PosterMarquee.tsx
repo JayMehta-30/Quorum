@@ -7,8 +7,8 @@ import { MOVIES } from "@/data/movies";
  */
 export const PosterMarquee = () => {
   // Two columns of posters scrolling in opposite directions
-  const colA = MOVIES.slice(0, 8);
-  const colB = MOVIES.slice(8, 16);
+  const colA = MOVIES.slice(0, 15);
+  const colB = MOVIES.slice(15, 30);
 
   return (
     <div className="relative h-full w-full overflow-hidden rounded-[2rem] border border-white/5">
@@ -27,6 +27,7 @@ export const PosterMarquee = () => {
                 className="w-full aspect-[2/3] object-cover rounded-xl shadow-card-cinema"
                 loading="lazy"
                 aria-hidden
+                onError={(e) => (e.currentTarget.style.display = 'none')}
               />
             ))}
           </div>
@@ -41,6 +42,7 @@ export const PosterMarquee = () => {
                 className="w-full aspect-[2/3] object-cover rounded-xl shadow-card-cinema"
                 loading="lazy"
                 aria-hidden
+                onError={(e) => (e.currentTarget.style.display = 'none')}
               />
             ))}
           </div>

@@ -22,6 +22,9 @@ export const MovieCard = forwardRef<HTMLDivElement, MovieCardProps>(
           loading="lazy"
           className="absolute inset-0 h-full w-full object-cover"
           draggable={false}
+          onError={(e) => {
+            e.currentTarget.src = "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80";
+          }}
         />
         <div className="absolute inset-0 bg-gradient-overlay" />
 

@@ -10,7 +10,7 @@ interface GameState {
   selectedMovies: Movie[];
   currentPlayerIndex: number;
   phase: GamePhase;
-  votes: Record<string, Record<string, VoteType>>; // playerName -> { movieId: vote }
+  votes: Record<number, Record<string, VoteType>>; // playerIndex -> { movieId: vote }
   
   // Actions
   setPhase: (phase: GamePhase) => void;
@@ -59,18 +59,17 @@ export const useGameStore = create<GameState>((set) => ({
     genres: genres,
     phase: names.length > 0 ? 'HANDOFF' : 'LOBBY',
     currentPlayerIndex: 0,
-    votes: Object.fromEntries(names.map((n) => [n, {}])), // initialize empty votes for everyone
+    votes: Object.fromEntries(names.map((_, i) => [i, {}])), // initialize empty votes by index
   })),
 
   recordVote: (movieId, vote) => set((state) => {
-    const current = state.players[state.currentPlayerIndex];
-    if (!current) return state;
+    const idx = state.currentPlayerIndex;
     
     return {
       votes: {
         ...state.votes,
-        [current]: {
-          ...state.votes[current],
+        [idx]: {
+          ...state.votes[idx],
           [movieId]: vote
         }
       }

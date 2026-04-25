@@ -165,7 +165,7 @@ export const VotingScreen = ({
           ) : (
             stack
               .map((movie, i) => {
-                const depth = stack.length - 1 - i;
+                const depth = i;
                 const isTop = depth === 0;
 
                 const flyTransform =
@@ -174,7 +174,7 @@ export const VotingScreen = ({
                       ? "translateX(140%) rotate(18deg)"
                       : flying === "left"
                         ? "translateX(-140%) rotate(-18deg)"
-                        : "translateY(-140%) scale(1.1) rotate(5deg)"
+                        : "translateY(-140%) scale(1.1) rotate(0deg) perspective(1000px) rotateX(15deg)"
                     : `translateY(${depth * -10}px) scale(${1 - depth * 0.04})`;
 
                 return (

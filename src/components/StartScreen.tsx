@@ -12,7 +12,6 @@ interface Props {
 
 export const StartScreen = ({ onStart }: Props) => {
   const [names, setNames] = useState<string[]>(["", ""]);
-  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
 
   const update = (i: number, v: string) => {
     const next = [...names];
@@ -23,11 +22,6 @@ export const StartScreen = ({ onStart }: Props) => {
   const add = () => names.length < 5 && setNames([...names, ""]);
   const remove = (i: number) =>
     names.length > 2 && setNames(names.filter((_, idx) => idx !== i));
-
-  const toggleGenre = (g: string) =>
-    setSelectedGenres((prev) =>
-      prev.includes(g) ? prev.filter((x) => x !== g) : [...prev, g]
-    );
 
   const valid = names.every((n) => n.trim().length > 0);
 
