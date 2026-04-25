@@ -1,91 +1,65 @@
-export interface Movie {
+﻿export type Movie = {
   id: string;
   title: string;
   year: number;
-  genre: string;
-  imageUrl: string;
-  description: string;
-}
+  genre: string[];
+  runtime: string;
+  rating: number;
+  director: string;
+  overview: string;
+  poster: string;
+  backdrop: string;
+  watchUrl?: string;
+};
 
-export const MOVIE_DECK: Movie[] = [
-  {
-    id: "m1",
-    title: "Inception",
-    year: 2010,
-    genre: "Sci-Fi",
-    imageUrl: "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&q=80&w=800",
-    description: "A thief who steals corporate secrets through the use of dream-sharing technology."
-  },
-  {
-    id: "m2",
-    title: "Interstellar",
-    year: 2014,
-    genre: "Sci-Fi",
-    imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800",
-    description: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival."
-  },
-  {
-    id: "m3",
-    title: "The Dark Knight",
-    year: 2008,
-    genre: "Action",
-    imageUrl: "https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?auto=format&fit=crop&q=80&w=800",
-    description: "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham."
-  },
-  {
-    id: "m4",
-    title: "Pulp Fiction",
-    year: 1994,
-    genre: "Crime",
-    imageUrl: "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?auto=format&fit=crop&q=80&w=800",
-    description: "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine."
-  },
-  {
-    id: "m5",
-    title: "The Matrix",
-    year: 1999,
-    genre: "Sci-Fi",
-    imageUrl: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=800",
-    description: "A computer hacker learns from mysterious rebels about the true nature of his reality."
-  },
-  {
-    id: "m6",
-    title: "Gladiator",
-    year: 2000,
-    genre: "Action",
-    imageUrl: "https://images.unsplash.com/photo-1533613220915-609f661a6fe1?auto=format&fit=crop&q=80&w=800",
-    description: "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family."
-  },
-  {
-    id: "m7",
-    title: "Dune",
-    year: 2021,
-    genre: "Sci-Fi",
-    imageUrl: "https://images.unsplash.com/photo-1546514714-df0ccc50d7bf?auto=format&fit=crop&q=80&w=800",
-    description: "Feature adaptation of Frank Herbert's science fiction novel, about the son of a noble family."
-  },
-  {
-    id: "m8",
-    title: "Blade Runner 2049",
-    year: 2017,
-    genre: "Sci-Fi",
-    imageUrl: "https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?auto=format&fit=crop&q=80&w=800",
-    description: "Young Blade Runner K's discovery of a long-buried secret leads him to track down former Blade Runner Rick Deckard."
-  },
-  {
-    id: "m9",
-    title: "Mad Max: Fury Road",
-    year: 2015,
-    genre: "Action",
-    imageUrl: "https://images.unsplash.com/photo-1533134486753-c833f0ed4866?auto=format&fit=crop&q=80&w=800",
-    description: "In a post-apocalyptic wasteland, a woman rebels against a tyrannical ruler in search for her homeland."
-  },
-  {
-    id: "m10",
-    title: "Fight Club",
-    year: 1999,
-    genre: "Drama",
-    imageUrl: "https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&q=80&w=800",
-    description: "An insomniac office worker and a devil-may-care soap maker form an underground fight club."
-  }
+export const ALL_GENRES = [
+  "Action", "Adventure", "Animation", "Biography", "Comedy", "Crime",
+  "Drama", "History", "Horror", "Music", "Musical", "Mystery",
+  "Romance", "Sci-Fi", "Thriller"
+];
+
+const img = (path: string) => `https://image.tmdb.org/t/p/w500${path}`;
+const bd = (path: string) => `https://image.tmdb.org/t/p/w1280${path}`;
+
+export const MOVIES: Movie[] = [
+  { id: "1", title: "Dune: Part Two", year: 2024, genre: ["Sci-Fi", "Adventure"], runtime: "2h 46m", rating: 8.5, director: "Denis Villeneuve", overview: "Paul Atreides unites with the Fremen to wage war against the conspirators who destroyed his family.", poster: img("/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg"), backdrop: bd("/xOMo8BRK7PfcJv9JCnx7s5hj0PX.jpg"), watchUrl: "https://www.primevideo.com" },
+  { id: "2", title: "Oppenheimer", year: 2023, genre: ["Drama", "History", "Biography"], runtime: "3h 0m", rating: 8.3, director: "Christopher Nolan", overview: "The story of J. Robert Oppenheimer's role in the development of the atomic bomb during World War II.", poster: img("/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg"), backdrop: bd("/fm6KqXpk3M2HVveHwCrBSSBaO0V.jpg"), watchUrl: "https://www.peacocktv.com" },
+  { id: "3", title: "Interstellar", year: 2014, genre: ["Sci-Fi", "Drama", "Adventure"], runtime: "2h 49m", rating: 8.7, director: "Christopher Nolan", overview: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.", poster: img("/gEU2QlsEOVSAkpb0mFe5pXVpjc.jpg"), backdrop: bd("/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg"), watchUrl: "https://www.netflix.com" },
+  { id: "4", title: "Parasite", year: 2019, genre: ["Comedy", "Drama", "Thriller"], runtime: "2h 12m", rating: 8.5, director: "Bong Joon-ho", overview: "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.", poster: img("/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg"), backdrop: bd("/TU9NIjwzjoKPwQHoZPhKvOFzB.jpg"), watchUrl: "https://www.hulu.com" },
+  { id: "5", title: "The Dark Knight", year: 2008, genre: ["Action", "Crime", "Drama"], runtime: "2h 32m", rating: 9.0, director: "Christopher Nolan", overview: "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests.", poster: img("/qJ2tW6WMUDux911r6m7haRef0WH.jpg"), backdrop: bd("/hqkIcbrOHL86UncnHIsHVcVmzue.jpg"), watchUrl: "https://www.netflix.com" },
+  { id: "6", title: "Whiplash", year: 2014, genre: ["Drama", "Music"], runtime: "1h 47m", rating: 8.5, director: "Damien Chazelle", overview: "A promising young drummer enrolls at a cut-throat music conservatory where his dreams of greatness are mentored by an instructor who will stop at nothing.", poster: img("/7fn624j5lj3xTme2SgiLCeuedmO.jpg"), backdrop: bd("/fRGxZuo7jJUWQsVg9PREb98Aclp.jpg"), watchUrl: "https://www.netflix.com" },
+  { id: "7", title: "La La Land", year: 2016, genre: ["Drama", "Romance", "Musical", "Music"], runtime: "2h 8m", rating: 8.0, director: "Damien Chazelle", overview: "While navigating their careers in Los Angeles, a pianist and an actress fall in love while attempting to reconcile their aspirations for the future.", poster: img("/uDO8zWDhfWwoFdKS4f69T1mPz0.jpg"), backdrop: bd("/qS3PSt3L9P9i1716PqG2YxWn2H.jpg"), watchUrl: "https://www.netflix.com" },
+  { id: "8", title: "The Social Network", year: 2010, genre: ["Drama", "Biography"], runtime: "2h 0m", rating: 7.7, director: "David Fincher", overview: "The story of the founders of the social-networking website, Facebook.", poster: img("/n0ybibhJtQ5icDqTp8eRytcIHJx.jpg"), backdrop: bd("/4E7YQcxGqcXoFkF2yO73y9PoxxQ.jpg"), watchUrl: "https://www.netflix.com" },
+  { id: "9", title: "Joker", year: 2019, genre: ["Crime", "Drama", "Thriller"], runtime: "2h 2m", rating: 8.5, director: "Todd Phillips", overview: "In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society.", poster: img("/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg"), backdrop: bd("/f5F4cRhQdUbyVbB5lTNCwFCk7gp.jpg"), watchUrl: "https://www.hbomax.com" },
+  { id: "10", title: "Spider-Man: Across the Spider-Verse", year: 2023, genre: ["Animation", "Action", "Adventure"], runtime: "2h 20m", rating: 8.7, director: "Joaquim Dos Santos", overview: "Miles Morales catapults across the Multiverse, where he encounters a team of Spider-People charged with protecting its very existence.", poster: img("/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg"), backdrop: bd("/4HodYYKEIsGOdinkGi2Ucz6X9i0.jpg"), watchUrl: "https://www.netflix.com" },
+  { id: "11", title: "Everything Everywhere All at Once", year: 2022, genre: ["Action", "Adventure", "Comedy", "Sci-Fi"], runtime: "2h 19m", rating: 7.8, director: "Daniel Kwan", overview: "An aging Chinese immigrant is swept up in an insane adventure, where she alone can save the world by exploring other universes.", poster: img("/w3LxiVYdWWRvEVdn5RYq6jIqkb1.jpg"), backdrop: bd("/jKuDyqx7jM6E6FDiAnXfY3u5b44.jpg"), watchUrl: "https://www.primevideo.com" },
+  { id: "12", title: "Get Out", year: 2017, genre: ["Horror", "Mystery", "Thriller"], runtime: "1h 44m", rating: 7.7, director: "Jordan Peele", overview: "A young African-American visits his white girlfriend's parents for the weekend, where his simmering uneasiness about their reception of him eventually reaches a boiling point.", poster: img("/tX5oXHVt5EaF220Bw7V3W8A8jN.jpg"), backdrop: bd("/f8GrJGJ2QFuGCSm7gTKiviyHmzY.jpg"), watchUrl: "https://www.peacocktv.com" },
+  { id: "13", title: "The Batman", year: 2022, genre: ["Action", "Crime", "Mystery"], runtime: "2h 56m", rating: 7.8, director: "Matt Reeves", overview: "When a sadistic serial killer begins murdering key political figures in Gotham, Batman is forced to investigate the city's hidden corruption.", poster: img("/74xTEgt7R36Fpooo50r9T25onhq.jpg"), backdrop: bd("/5P8SmMzSNYikXpzilOPpxhPNE2P.jpg"), watchUrl: "https://www.hbomax.com" },
+  { id: "14", title: "Dune", year: 2021, genre: ["Sci-Fi", "Adventure"], runtime: "2h 35m", rating: 7.8, director: "Denis Villeneuve", overview: "A noble family becomes embroiled in a war for control over the galaxy's most valuable asset while its scion is thrust into an unimaginable future.", poster: img("/d5NXSklXo0qyIYkgV94XAgMIckC.jpg"), backdrop: bd("/jYEW5xZkZk2WTrdbMGAPFuBqbDc.jpg"), watchUrl: "https://www.hbomax.com" },
+  { id: "15", title: "No Country for Old Men", year: 2007, genre: ["Crime", "Drama", "Thriller"], runtime: "2h 2m", rating: 8.2, director: "Joel Coen", overview: "Violence and mayhem ensue after a hunter stumbles upon a drug deal gone wrong and more than two million dollars in cash near the Rio Grande.", poster: img("/or2pGEj9JFVc3Zcupr5vt9GHJZT.jpg"), backdrop: bd("/yzPJNMEB4pRVbfBhSJOKJVxZyFl.jpg"), watchUrl: "https://www.netflix.com" },
+  { id: "16", title: "Mad Max: Fury Road", year: 2015, genre: ["Action", "Adventure", "Sci-Fi"], runtime: "2h 0m", rating: 8.1, director: "George Miller", overview: "In a post-apocalyptic wasteland, a woman rebels against a tyrannical ruler in search for her homeland.", poster: img("/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"), backdrop: bd("/phszHPFzWZCMGAHFHMjNMcFWjUS.jpg"), watchUrl: "https://www.hbomax.com" },
+  { id: "17", title: "Arrival", year: 2016, genre: ["Drama", "Mystery", "Sci-Fi"], runtime: "1h 56m", rating: 7.9, director: "Denis Villeneuve", overview: "A linguist works with the military to communicate with alien lifeforms after twelve mysterious spacecraft appear around the world.", poster: img("/x2FJsf1ElAgr63Y3PNPtJrcmpoe.jpg"), backdrop: bd("/kJYSCFEBcfzfm1JfMdQKWoFiUKA.jpg"), watchUrl: "https://www.netflix.com" },
+  { id: "18", title: "Blade Runner 2049", year: 2017, genre: ["Action", "Drama", "Sci-Fi"], runtime: "2h 44m", rating: 8.0, director: "Denis Villeneuve", overview: "Young Blade Runner K's discovery of a long-buried secret leads him to track down former Blade Runner Rick Deckard.", poster: img("/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg"), backdrop: bd("/ilRyazdMJwN3wHKxHEiKPlnPfFN.jpg"), watchUrl: "https://www.netflix.com" },
+  { id: "19", title: "The Shawshank Redemption", year: 1994, genre: ["Drama"], runtime: "2h 22m", rating: 9.3, director: "Frank Darabont", overview: "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.", poster: img("/lyQBXzOQSuE59IsHyhrp0qIiPAz.jpg"), backdrop: bd("/kXfqcdQKsToO0OUXHcrrNCHDBzO.jpg"), watchUrl: "https://www.netflix.com" },
+  { id: "20", title: "Forrest Gump", year: 1994, genre: ["Comedy", "Drama", "Romance"], runtime: "2h 22m", rating: 8.8, director: "Robert Zemeckis", overview: "The presidencies of Kennedy and Johnson, the Vietnam War, and other historical events unfold through the perspective of an Alabama man.", poster: img("/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg"), backdrop: bd("/qdIMHd4sEoobPdZSotkj3CtRETb.jpg"), watchUrl: "https://www.netflix.com" },
+  { id: "21", title: "The Silence of the Lambs", year: 1991, genre: ["Crime", "Drama", "Horror", "Mystery", "Thriller"], runtime: "1h 58m", rating: 8.6, director: "Jonathan Demme", overview: "A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer.", poster: img("/rplLJ2hPcOQmkFhTqUte0MkEaO2.jpg"), backdrop: bd("/mfwq2nMBzArzQ7Y9RKE8SKeeTkg.jpg"), watchUrl: "https://www.primevideo.com" },
+  { id: "22", title: "Goodfellas", year: 1990, genre: ["Biography", "Crime", "Drama"], runtime: "2h 26m", rating: 8.7, director: "Martin Scorsese", overview: "The story of Henry Hill and his life in the mob, covering his relationship with his wife Karen Hill and his mob partners.", poster: img("/aKuFiU82s5ISJpGZp7YkIr3kCUd.jpg"), backdrop: bd("/sw7mordbZxgITU877yTpZCud90M.jpg"), watchUrl: "https://www.hbomax.com" },
+  { id: "23", title: "Inception", year: 2010, genre: ["Action", "Adventure", "Mystery", "Sci-Fi", "Thriller"], runtime: "2h 28m", rating: 8.8, director: "Christopher Nolan", overview: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.", poster: img("/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg"), backdrop: bd("/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg"), watchUrl: "https://www.netflix.com" },
+  { id: "24", title: "The Grand Budapest Hotel", year: 2014, genre: ["Adventure", "Comedy", "Crime", "Drama"], runtime: "1h 40m", rating: 8.1, director: "Wes Anderson", overview: "A writer encounters the owner of an aging European hotel between the wars and learns of his early career as a lobby boy.", poster: img("/eWdyYQreja6JGCzqHWXpWHDrrPo.jpg"), backdrop: bd("/zSuMWDBJc6eMIJZAOBxEjwP96f9.jpg"), watchUrl: "https://www.hbomax.com" },
+  { id: "25", title: "Knives Out", year: 2019, genre: ["Comedy", "Crime", "Mystery", "Thriller"], runtime: "2h 10m", rating: 7.9, director: "Rian Johnson", overview: "A detective investigates the death of a patriarch of an eccentric, combative family.", poster: img("/pThyQovXQrws2OPMfRpNAHTGAQu.jpg"), backdrop: bd("/3HjEMHzv7E9QjLSUhHZeN3lB6YS.jpg"), watchUrl: "https://www.netflix.com" },
+  { id: "26", title: "Coco", year: 2017, genre: ["Animation", "Adventure", "Comedy", "Musical", "Music"], runtime: "1h 45m", rating: 8.4, director: "Lee Unkrich", overview: "Aspiring musician Miguel, confronted with his family's ancestral ban on music, enters the Land of the Dead to find his great-great-grandfather.", poster: img("/gGEsBPAijhVUFoiNpgZXqRVWJt2.jpg"), backdrop: bd("/xXHZeb1yhJvnSHPzZDqee0zfMb6.jpg"), watchUrl: "https://www.disneyplus.com" },
+  { id: "27", title: "Schindler's List", year: 1993, genre: ["Biography", "Drama", "History"], runtime: "3h 15m", rating: 9.0, director: "Steven Spielberg", overview: "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution.", poster: img("/sF1U4EUQS8YHUYjNl3pMGNIQyr0.jpg"), backdrop: bd("/loRmRzQXZeqG78TqZEAsany74BM.jpg"), watchUrl: "https://www.peacocktv.com" },
+  { id: "28", title: "Hereditary", year: 2018, genre: ["Drama", "Horror", "Mystery", "Thriller"], runtime: "2h 7m", rating: 7.3, director: "Ari Aster", overview: "When the matriarch of the Graham family passes away, her daughter's family begins to unravel cryptic and increasingly terrifying secrets about their ancestry.", poster: img("/4NyMsHgZOqhSKK7TKGQD2JsJzTO.jpg"), backdrop: bd("/qJeU7KM4nT2C1WpOrwPcSDGFUWE.jpg"), watchUrl: "https://www.primevideo.com" },
+  { id: "29", title: "The Revenant", year: 2015, genre: ["Action", "Adventure", "Drama"], runtime: "2h 36m", rating: 8.0, director: "Alejandro G. Inarritu", overview: "A frontiersman on a fur trading expedition in the 1820s fights for survival after being mauled by a bear.", poster: img("/ji3ecJphATlVgV2zKkXbRkEwvN2.jpg"), backdrop: bd("/4MnHAXNETEHSEBGBOoLgQJVkPKO.jpg"), watchUrl: "https://www.hbomax.com" },
+  { id: "30", title: "Bohemian Rhapsody", year: 2018, genre: ["Biography", "Drama", "Music"], runtime: "2h 14m", rating: 7.9, director: "Bryan Singer", overview: "The story of the legendary rock band Queen and lead singer Freddie Mercury, leading up to their famous performance at Live Aid.", poster: img("/lHu1wtNaczFPGFDTrjCSzeLPTKN.jpg"), backdrop: bd("/nBGCLUhMDUPxCbNRfBTkMIRzwVj.jpg"), watchUrl: "https://www.disneyplus.com" },
+  { id: "31", title: "Gravity", year: 2013, genre: ["Drama", "Sci-Fi", "Thriller"], runtime: "1h 31m", rating: 7.7, director: "Alfonso Cuaron", overview: "Two astronauts work together to survive after an accident leaves them stranded in space.", poster: img("/kZ2nZw8D681AJbieVDEKoMbUINk.jpg"), backdrop: bd("/bWnR4ETaYcBhPmjeFpwBnAyhlQ1.jpg"), watchUrl: "https://www.netflix.com" },
+  { id: "32", title: "The Prestige", year: 2006, genre: ["Drama", "Mystery", "Sci-Fi", "Thriller"], runtime: "2h 10m", rating: 8.5, director: "Christopher Nolan", overview: "After a tragic accident, two stage magicians in 1890s London engage in a battle to create the ultimate illusion while sacrificing everything they have.", poster: img("/5MXyQfz8xkjjqdjvisYNLniqyko.jpg"), backdrop: bd("/y36Fg8aLCZMfJuLhf0PZ9bMWuGT.jpg"), watchUrl: "https://www.netflix.com" },
+  { id: "33", title: "Prisoners", year: 2013, genre: ["Crime", "Drama", "Mystery", "Thriller"], runtime: "2h 33m", rating: 8.1, director: "Denis Villeneuve", overview: "When Keller Dover's daughter and her friend go missing, he takes matters into his own hands as the police pursue multiple leads.", poster: img("/iLBuMZPiAfkFdo5DaB4gWhQFn52.jpg"), backdrop: bd("/u5cMHCrAQmJHMb3BKPW0k7tDH4q.jpg"), watchUrl: "https://www.primevideo.com" },
+  { id: "34", title: "Memento", year: 2000, genre: ["Mystery", "Thriller"], runtime: "1h 53m", rating: 8.5, director: "Christopher Nolan", overview: "A man with short-term memory loss attempts to track down his wife's murderer.", poster: img("/yuNs09hvpHVU1cBTCAk9zxsL2oW.jpg"), backdrop: bd("/qGlo7TBDLl42o1SgGcz2e18KiIc.jpg"), watchUrl: "https://www.netflix.com" },
+  { id: "35", title: "Marriage Story", year: 2019, genre: ["Comedy", "Drama", "Romance"], runtime: "2h 17m", rating: 7.9, director: "Noah Baumbach", overview: "A stage director and his actor wife struggle through a coast-to-coast divorce that pushes them to their personal and creative extremes.", poster: img("/pZekG6xabPCzOHnijQOJSdkP8A5.jpg"), backdrop: bd("/mRmRE4RknbL7qKALWQDz64hWqPa.jpg"), watchUrl: "https://www.netflix.com" },
+  { id: "36", title: "A Beautiful Mind", year: 2001, genre: ["Biography", "Drama"], runtime: "2h 15m", rating: 8.2, director: "Ron Howard", overview: "After John Nash, a brilliant but asocial mathematician, accepts secret work in cryptography, his life takes a turn for the worse.", poster: img("/zwzWCmH72OSC9NA0ipoqynL4FRf.jpg"), backdrop: bd("/z10UrBQpVIQ7jtAhJKPXcBpBFJbX.jpg"), watchUrl: "https://www.primevideo.com" },
+  { id: "37", title: "Rocketman", year: 2019, genre: ["Biography", "Drama", "Music", "Musical", "Romance"], runtime: "2h 1m", rating: 7.3, director: "Dexter Fletcher", overview: "A musical fantasy about the fantastical human story of Elton John's breakthrough years.", poster: img("/cpLmqKbPCgAVmHiwc3cNxIvlgCO.jpg"), backdrop: bd("/y7EzopCMQLDErGVGBPBSdRTkMOA.jpg"), watchUrl: "https://www.netflix.com" },
+  { id: "38", title: "Before Sunrise", year: 1995, genre: ["Drama", "Romance"], runtime: "1h 41m", rating: 8.1, director: "Richard Linklater", overview: "A young man and woman meet on a train in Europe, and wind up spending one evening together in Vienna.", poster: img("/vu8HrycFdFgLKBuvhFGH1QGKQHH.jpg"), backdrop: bd("/2n50YNqhBhDgKXlknT4LOolRrSX.jpg"), watchUrl: "https://www.netflix.com" },
+  { id: "39", title: "Midsommar", year: 2019, genre: ["Drama", "Horror", "Mystery"], runtime: "2h 28m", rating: 7.1, director: "Ari Aster", overview: "A couple travels to Sweden to visit a rural hometown's midsummer festival. What begins as an idyllic retreat quickly devolves into an increasingly violent competition.", poster: img("/7LEI8ulZzO5gy9Ww2NVCrKmHeDZ.jpg"), backdrop: bd("/wlBwYNzKSfwJQoFMVqBFzfTGaWr.jpg"), watchUrl: "https://www.primevideo.com" },
+  { id: "40", title: "The Wolf of Wall Street", year: 2013, genre: ["Biography", "Comedy", "Crime", "Drama"], runtime: "3h 0m", rating: 8.2, director: "Martin Scorsese", overview: "Based on the true story of Jordan Belfort, from his rise to a wealthy stock-broker living the high life to his fall involving crime, corruption and the federal government.", poster: img("/34m2tygAYBGqA9MXKhRDtzYd4MR.jpg"), backdrop: bd("/rSPw7tgCH9c6NqICZef4kZjFOQ5.jpg"), watchUrl: "https://www.netflix.com" },
 ];
